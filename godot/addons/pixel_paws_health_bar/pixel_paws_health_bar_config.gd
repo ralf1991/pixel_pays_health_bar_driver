@@ -35,6 +35,16 @@ extends Resource
 		emit_changed()
 @export var low_health_animation_interval: float = 0.5
 
+@export_category("Segments")
+## optional idle loops seg{k}_full_idle.png / seg{k}_half_idle.png (packs without them are not affected)
+@export var segment_idle_animation: bool = false
+## seconds between two idle loops of the same segment
+@export_range(0.1, 10.0, 0.1)
+var segment_idle_interval: float = 2.4
+## time offset between neighbouring segments, so they don't animate in sync
+@export_range(0.0, 2.0, 0.05)
+var segment_idle_stagger: float = 0.45
+
 @export_category("Mana")
 @export var mana_regeneration_interval: float = 2.0
 @export var mana_regeneration_value: float = 0.05
