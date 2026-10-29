@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://bq3o3s1g14lhd"]
+
+[ext_resource type="Script" uid="uid://dok4hsjm23sln" path="res://demo/demo.gd" id="1"]
+[ext_resource type="Script" uid="uid://lrqhai0fbsbe" path="res://addons/pixel_paws_health_bar/pixel_paws_health_bar.gd" id="2"]
+[ext_resource type="Resource" uid="uid://3kvt2hia0qax" path="res://resources/demo_health_bar.tres" id="3_j5lb4"]
+[ext_resource type="FontFile" uid="uid://dwr4l7jbnqftb" path="res://assets/fonts/PressStart2P-Regular.ttf" id="4_j5lb4"]
+
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.11764706, 0.14117648, 0.21960784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 6
+border_color = Color(0.16470589, 0.3372549, 0.46666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_pressed"]
+content_margin_left = 12.0
+content_margin_top = 15.0
+content_margin_right = 12.0
+content_margin_bottom = 9.0
+bg_color = Color(0.050980393, 0.0627451, 0.09803922, 1)
+border_width_left = 3
+border_width_top = 6
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2784314, 0.54901963, 0.7490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.15294118, 0.1882353, 0.2901961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 6
+border_color = Color(0.2784314, 0.54901963, 0.7490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.050980393, 0.0627451, 0.09803922, 1)
+border_width_left = 3
+border_width_top = 28
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.101960786, 0.1254902, 0.2, 1)
+
+[node name="Demo" type="Node2D" unique_id=826039058]
+script = ExtResource("1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=902643203]
+
+[node name="Root" type="Control" parent="CanvasLayer" unique_id=676209468]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Content" type="Control" parent="CanvasLayer/Root" unique_id=1795578772]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Root/Content" unique_id=1283657070]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 1152.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(1, 0.8235294, 0.3529412, 1)
+theme_override_colors/font_shadow_color = Color(0.47843137, 0.24705882, 0.0627451, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 32
+text = "NEXT GEN HEALTH BARS"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CanvasLayer/Root/Content" unique_id=510989796]
+layout_mode = 0
+offset_top = 78.0
+offset_right = 1152.0
+offset_bottom = 98.0
+theme_override_colors/font_color = Color(0.56078434, 0.75686276, 0.91764706, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 16
+text = "GODOT 4 DRIVER - DEMO"
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="CanvasLayer/Root/Content" unique_id=806197832]
+layout_mode = 0
+offset_top = 110.0
+offset_right = 1152.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.42352942, 0.47058824, 0.5803922, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 8
+text = "Thank you for downloading! 
+All of my health bars from 2026 or later work with this script."
+horizontal_alignment = 1
+
+[node name="PixelPawsHealthBar" type="Control" parent="CanvasLayer/Root/Content" unique_id=1951864332]
+unique_name_in_owner = true
+texture_filter = 1
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 140.0
+offset_right = 755.0
+offset_bottom = 244.0
+mouse_filter = 2
+script = ExtResource("2")
+config = ExtResource("3_j5lb4")
+pixel_scale = 8
+
+[node name="Status" type="RichTextLabel" parent="CanvasLayer/Root/Content" unique_id=732037154]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 262.0
+offset_right = 1152.0
+offset_bottom = 282.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_j5lb4")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]HEALTH 10/10    MANA 100%[/center]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Buttons" type="HBoxContainer" parent="CanvasLayer/Root/Content" unique_id=642699820]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 298.0
+offset_right = 936.0
+offset_bottom = 352.0
+theme_override_constants/separation = 24
+
+[node name="DamageButton" type="Button" parent="CanvasLayer/Root/Content/Buttons" unique_id=860820167]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(224, 54)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.41960785, 0.3529412, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.41960785, 0.3529412, 1)
+theme_override_colors/font_hover_color = Color(1, 0.41960785, 0.3529412, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("btn_normal")
+theme_override_styles/pressed = SubResource("btn_pressed")
+theme_override_styles/hover = SubResource("btn_hover")
+text = "[1] DAMAGE"
+
+[node name="HealButton" type="Button" parent="CanvasLayer/Root/Content/Buttons" unique_id=1300282124]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(224, 54)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.42352942, 0.8901961, 0.5411765, 1)
+theme_override_colors/font_pressed_color = Color(0.42352942, 0.8901961, 0.5411765, 1)
+theme_override_colors/font_hover_color = Color(0.42352942, 0.8901961, 0.5411765, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("btn_normal")
+theme_override_styles/pressed = SubResource("btn_pressed")
+theme_override_styles/hover = SubResource("btn_hover")
+text = "[2] HEAL"
+
+[node name="ManaButton" type="Button" parent="CanvasLayer/Root/Content/Buttons" unique_id=90482067]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(224, 54)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.34117648, 0.7019608, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.34117648, 0.7019608, 1, 1)
+theme_override_colors/font_hover_color = Color(0.34117648, 0.7019608, 1, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("btn_normal")
+theme_override_styles/pressed = SubResource("btn_pressed")
+theme_override_styles/hover = SubResource("btn_hover")
+text = "[3] USE MANA"
+
+[node name="CodePanel" type="Panel" parent="CanvasLayer/Root/Content" unique_id=1677000485]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 380.0
+offset_right = 1056.0
+offset_bottom = 590.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("panel")
+
+[node name="ApiHeader" type="Label" parent="CanvasLayer/Root/Content/CodePanel" unique_id=1443090799]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 400.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0.8235294, 0.3529412, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 8
+text = "PUBLIC API"
+
+[node name="Api" type="RichTextLabel" parent="CanvasLayer/Root/Content/CodePanel" unique_id=1671192861]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 540.0
+offset_bottom = 200.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.9019608, 0.9254902, 0.9607843, 1)
+theme_override_constants/line_separation = 8
+theme_override_fonts/normal_font = ExtResource("4_j5lb4")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=#57b3ff]set_health[/color]([color=#bce0ff]value[/color]: [color=#42ffc2]int[/color])
+[color=#57b3ff]set_mana[/color]([color=#bce0ff]value[/color]: [color=#42ffc2]float[/color])
+[color=#57b3ff]damage[/color]([color=#bce0ff]points[/color]: [color=#42ffc2]int[/color] = [color=#a1ffe0]1[/color])
+[color=#57b3ff]heal[/color]([color=#bce0ff]points[/color]: [color=#42ffc2]int[/color] = [color=#a1ffe0]1[/color])
+[color=#57b3ff]use_mana[/color]([color=#bce0ff]amount[/color]: [color=#42ffc2]float[/color]) -> [color=#42ffc2]bool[/color]
+[color=#57b3ff]restore_mana[/color]([color=#bce0ff]amount[/color]: [color=#42ffc2]float[/color])"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SignalsHeader" type="Label" parent="CanvasLayer/Root/Content/CodePanel" unique_id=79331628]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 12.0
+offset_right = 940.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.8235294, 0.3529412, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 8
+text = "SIGNALS  &  CONFIG"
+
+[node name="Signals" type="RichTextLabel" parent="CanvasLayer/Root/Content/CodePanel" unique_id=685913165]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 40.0
+offset_right = 944.0
+offset_bottom = 200.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.9019608, 0.9254902, 0.9607843, 1)
+theme_override_constants/line_separation = 8
+theme_override_fonts/normal_font = ExtResource("4_j5lb4")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=#ff7085]signal[/color] [color=#57b3ff]health_changed[/color]
+[color=#ff7085]signal[/color] [color=#57b3ff]mana_changed[/color]
+
+[font_size=8][color=#6c7894]Tweak animations, low health
+threshold and mana regeneration
+in resources/demo_health_bar.tres[/color][/font_size]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Footer" type="Label" parent="CanvasLayer/Root/Content" unique_id=1876769248]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 618.0
+theme_override_colors/font_color = Color(0.42352942, 0.47058824, 0.5803922, 1)
+theme_override_fonts/font = ExtResource("4_j5lb4")
+theme_override_font_sizes/font_size = 8
+text = "Mana restores over time and can also be restored via code.  -  Problems? Message me on itch.io"
+horizontal_alignment = 1
