@@ -38,7 +38,7 @@ extends Resource
 @export_category("Segments")
 ## optional idle loops seg{k}_full_idle.png / seg{k}_half_idle.png (packs without them are not affected)
 @export var segment_idle_animation: bool = false
-## seconds between two idle loops of the same segment
+## seconds from the start of one idle loop to the start of the next (same beat for all segments)
 @export_range(0.1, 10.0, 0.1)
 var segment_idle_interval: float = 2.4
 ## time offset between neighbouring segments, so they don't animate in sync

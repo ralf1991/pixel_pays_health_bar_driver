@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PixelPawsHealthBarConfig" format=3 uid="uid://3kvt2hia0qax"]
+
+[ext_resource type="Texture2D" uid="uid://bjfg76edxdq23" path="res://addons/pixel_paws_health_bar_nes/frame.png" id="1_htiss"]
+[ext_resource type="Script" uid="uid://ba7dqn8leq76q" path="res://addons/pixel_paws_health_bar/pixel_paws_health_bar_config.gd" id="2_rpbnl"]
+
+[resource]
+script = ExtResource("2_rpbnl")
+frame_texture = ExtResource("1_htiss")
+mana_regeneration_interval = 0.167
+mana_regeneration_value = 0.01
+metadata/_custom_type_script = "uid://ba7dqn8leq76q"

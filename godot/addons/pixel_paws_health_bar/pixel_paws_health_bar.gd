@@ -66,7 +66,9 @@ var _segs: Array[DrawLayer] = [DrawLayer.new(), DrawLayer.new(), DrawLayer.new()
 var _heart: DrawLayer = DrawLayer.new()
 var _seg_token: Array[int] = [0, 0, 0, 0, 0]
 var _seg_busy: Array[bool] = [false, false, false, false, false]
-var _seg_idle_time: Array[float] = [0.0, 0.0, 0.0, 0.0, 0.0]
+# one shared clock for all segment idle loops -> the rhythm stays intact when segments are lost and healed
+var _seg_idle_clock: float = 0.0
+var _seg_idle_beat: Array[int] = [0, 0, 0, 0, 0] # last beat each segment has handled
 var _heart_token: int = 0
 var _heart_busy: bool = false
 var _display_heart_low: bool = false
@@ -141,14 +143,21 @@ func _process(delta: float) -> void:
 func _process_segment_idle(delta: float) -> void:
 	if not config.segment_idle_animation:
 		return
+	_seg_idle_clock += delta
+	var interval: float = maxf(config.segment_idle_interval, 0.1)
 	for i: int in SEGMENTS:
+		# every segment runs on the same clock, shifted by its stagger offset; a segment that is
+		# empty or busy at its beat just skips it and stays in sync for the next one
+		var t: float = _seg_idle_clock - config.segment_idle_stagger * i
+		if t < interval:
+			continue
+		var beat: int = floori(t / interval)
+		if beat == _seg_idle_beat[i]:
+			continue
+		_seg_idle_beat[i] = beat
 		var part: String = _part(health, i)
 		if part == "empty" or _seg_busy[i]:
 			continue
-		_seg_idle_time[i] += delta
-		if _seg_idle_time[i] < config.segment_idle_interval:
-			continue
-		_seg_idle_time[i] = 0.0
 		var rel: String = "%s/seg%d_%s_idle.png" % [FOLDER_HEALTH, i, part]
 		if _has_strip(rel):
 			_play_segment(i, rel, part)
@@ -314,7 +323,6 @@ func _part(h: int, i: int) -> String:
  
 func _animate_segment(i: int, a: String, b: String) -> void:
 	# bumps the token -> also cancels a running idle loop of this segment
-	_seg_idle_time[i] = 0.0
 	await _play_segment(i, "%s/seg%d_%s_to_%s.png" % [FOLDER_HEALTH, i, a, b], b)
  
  
@@ -329,10 +337,11 @@ func _play_segment(i: int, rel: String, end_part: String) -> void:
  
  
 func _reset_segment_idle() -> void:
-	# negative start values -> segments start their idle loops one after another
+	# segment i first plays at interval + stagger * i -> they start one after another
+	_seg_idle_clock = 0.0
 	for i: int in SEGMENTS:
 		_seg_busy[i] = false
-		_seg_idle_time[i] = -config.segment_idle_stagger * i
+		_seg_idle_beat[i] = 0
  
  
 func _show_segment(i: int, part: String) -> void:
