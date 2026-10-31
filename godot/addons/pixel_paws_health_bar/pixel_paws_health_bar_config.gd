@@ -29,6 +29,7 @@ extends Resource
 
 ## true: heart_low.png loops every low_health_animation_interval
 ## false: heart_low.png plays once, holds its last frame and plays backwards when healed above the threshold
+## (hits while low use heart_low_hit.png if the pack has it)
 @export var loop_low_animation: bool = true:
 	set(v):
 		loop_low_animation = v

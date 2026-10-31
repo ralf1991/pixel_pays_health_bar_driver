@@ -191,11 +191,21 @@ func set_health(value: int) -> void:
 			_animate_segment(i, a, b)
  
 	var die_rel: String = "%s/heart_die.png" % FOLDER_HEART
+	var low_hit_rel: String = "%s/heart_low_hit.png" % FOLDER_HEART
+	var dead_low_rel: String = "%s/heart_dead_to_low.png" % FOLDER_HEART
 	if value < old and value > 0:
-		_play_heart("heart_hit.png")
+		if _display_heart_low and _is_low() and _has_strip(low_hit_rel):
+			# optional: hit while the low heart is held, keeps the low look
+			_play_heart("heart_low_hit.png")
+		else:
+			_play_heart("heart_hit.png")
 	elif value <= 0 and old > 0 and _has_strip(die_rel):
 		# optional: transition into the dead heart
 		_play_heart("heart_die.png")
+	elif value > 0 and old <= 0 and not config.loop_low_animation and _is_low() and _has_strip(dead_low_rel):
+		# optional: revived with low health, ends on the held low heart
+		_display_heart_low = true
+		_play_heart("heart_dead_to_low.png")
 	elif value > 0 and old <= 0 and _has_strip(die_rel):
 		# revived -> play it backwards
 		_play_heart("heart_die.png", true)
@@ -446,4 +456,3 @@ func _tex(rel: String) -> Texture2D:
 	return _tex_cache[rel]
  
 #endregion
- 
